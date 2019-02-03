@@ -4,6 +4,10 @@ const Discord = require('discord.js')
 const fs = require('fs')
 const client = new Discord.Client()
 
+client.on('ready', () => {
+  client.user.setActivity('https://github.com/AkimotoRyou/ViRe-Bot', {type: "WATCHING"})
+})
+
 fs.readdir('./events/', (err, files) => {
   files.forEach(file => {
     const eventHandler = require(`./events/${file}`)
