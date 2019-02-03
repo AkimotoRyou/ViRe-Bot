@@ -12,5 +12,5 @@ fs.readdir('./events/', (err, files) => {
   })
 })
 
-client.login(proceess.env.BOT_TOKEN)
+client.login(process.env.BOT_TOKEN)
 require('http').createServer().listen(3000)
