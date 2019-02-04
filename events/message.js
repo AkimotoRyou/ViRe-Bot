@@ -2,6 +2,7 @@ const {prefix} = require('../config.json')
 const kick = require('../commands/kick')
 const ban = require('../commands/ban')
 const info = require('../commands/info')
+const prune = require('../commands/prune')
 
 module.exports = (client, message) => {
   if(!message.content.startsWith(prefix) || message.author.bot) return;
@@ -10,10 +11,12 @@ module.exports = (client, message) => {
   const command = args.shift().toLowerCase()
 
   if(command === 'kick'){
-      return kick(message)
+    return kick(message)
   }else if(command === 'ban'){
-      return ban(message)
+    return ban(message)
   }else if(command === 'info'){
-      return info(message)
+    return info(message)
+  }else if(command === 'prune'){
+    return prune(args)
   }
 }
