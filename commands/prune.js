@@ -1,4 +1,4 @@
-module.exports = args =>{
+module.exports = (message, args) =>{
   const amount = parseInt(args[0])+1
 
   if(isNaN(amount)){

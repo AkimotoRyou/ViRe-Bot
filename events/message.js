@@ -17,6 +17,6 @@ module.exports = (client, message) => {
   }else if(command === 'info'){
     return info(message)
   }else if(command === 'prune'){
-    return prune(args)
+    return prune(message, args)
   }
 }
