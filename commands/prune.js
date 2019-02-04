@@ -1,4 +1,5 @@
 module.exports = (message, args) =>{
+  guildOnly : true
   const amount = parseInt(args[0])+1
 
   if(isNaN(amount)){

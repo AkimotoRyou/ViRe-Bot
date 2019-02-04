@@ -1,4 +1,5 @@
 module.exports = message => {
+  guildOnly : true
   const member = message.mentions.members.first()
 
   if(!member){

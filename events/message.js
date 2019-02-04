@@ -23,7 +23,7 @@ module.exports = (client, message) => {
   const command = client.commands.get(commandName)
 
   try{
-    client.commands.get(command).execute(message, args)
+    command.execute(message, args)
   } catch (error){
     console.error(error)
     message.repl('there was an error while trying to execute that command.')
