@@ -1,22 +1,29 @@
+const fs = require('fs')
+const Discord = require('discord.js')
 const {prefix} = require('../config.json')
-const kick = require('../commands/kick')
-const ban = require('../commands/ban')
-const info = require('../commands/info')
-const prune = require('../commands/prune')
 
 module.exports = (client, message) => {
+//Getting commands files at ../commands
+  client.commands = new Discord.Collection()
+  const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'))
+
+  for(const file of commandFiles){
+    const command = require(`../commands/${file}`)
+    client.commands.set(command.name, command)
+  }
+
+//Executing commands
   if(!message.content.startsWith(prefix) || message.author.bot) return;
 
   const args = message.content.slice(prefix.length).split(/ +/);
   const command = args.shift().toLowerCase()
 
-  if(command === 'kick'){
-    return kick(message)
-  }else if(command === 'ban'){
-    return ban(message)
-  }else if(command === 'info'){
-    return info(message)
-  }else if(command === 'prune'){
-    return prune(message, args)
+  if(!client.commands.has(command)) return;
+
+  try{
+    client.commands.get(command).execute(message, args)
+  } catch (error){
+    console.error(error)
+    message.repl('there was an error while trying to execute that command.')
   }
 }

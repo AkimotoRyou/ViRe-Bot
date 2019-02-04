@@ -1,11 +1,10 @@
 require('dotenv').config()
-const {prefix} = require('./config.json')
 const Discord = require('discord.js')
 const fs = require('fs')
 const client = new Discord.Client()
 
 client.on('ready', () => {
-  client.user.setActivity('https://github.com/AkimotoRyou/ViRe-Bot', {type: "WATCHING"})
+  client.user.setActivity('GitHub.com', {type: "WATCHING"})
 })
 
 fs.readdir('./events/', (err, files) => {
