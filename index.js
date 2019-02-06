@@ -28,11 +28,17 @@ fs.readdir('./events/', (err, files) => {
 
 client.on('message', message => {
   if(message.author.bot) return;
-//Command features
-  if(message.content.startsWith(prefix)){
 
-    const args = message.content.slice(prefix.length).split(/ +/);
-    const command = args.shift().toLowerCase()
+//Command features
+    var args,command
+
+    if(message.content.startsWith(prefix)){
+      args = message.content.slice(prefix.length).split(/ +/)
+      command = args.shift().toLowerCase()
+    } else if (message.isMentioned(client.user)){
+      args = message.content.slice(22).split(/ +/)
+      command = args.shift().toLowerCase()
+    }
 
     if(!client.commands.has(command)) return;
 
@@ -42,8 +48,8 @@ client.on('message', message => {
       console.error(error)
       message.reply('there was an error while trying to execute that command.')
     }
-  }
-  //Filter features
+
+//Filter features
     var blacklist = ["shit", "sh1t", "sh!t", "sht", "fuck", "fck", "cok", "c0k", "bitch", "b1tch", "b!tch", "btch", "kontol", "k0ntol", "kont0l", "k0nt0l", "kntl"];
     let censor = "[Censored]";
     let edit = message.content;
