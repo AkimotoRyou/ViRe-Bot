@@ -27,7 +27,24 @@ fs.readdir('./events/', (err, files) => {
 
 
 client.on('message', message => {
-    if(!message.content.startsWith(prefix) || message.author.bot) return;
+  if(message.author.bot) return;
+//Filter features
+  var blacklist = ["shit", "sh1t", "sh!t", "sht", "fuck", "fck", "cok", "c0k", "bitch", "b1tch", "b!tch", "btch", "kontol", "k0ntol", "kont0l", "k0nt0l", "kntl"];
+  let censor = "[Censored]";
+  let edit = message.content;
+  for (var i=0; i<= blacklist.length; i++) {
+    if (message.content.toLowerCase().includes(blacklist[i])) {
+      edit = edit.replace(new RegExp(blacklist[i], 'gi'), censor)
+    }
+  }
+  if(edit === message.content){
+    return;
+  } else {
+    message.delete()
+    message.channel.send(`${message.author.username} : ${edit}`)
+  }
+//Command features
+  if(message.content.startsWith(prefix)){
 
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase()
@@ -40,6 +57,7 @@ client.on('message', message => {
       console.error(error)
       message.reply('there was an error while trying to execute that command.')
     }
+  }
 })
 
 
