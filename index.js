@@ -29,10 +29,10 @@ fs.readdir('./events/', (err, files) => {
 client.on('message', message => {
   if(message.author.bot) return;
   var args,command
+  var censor = "[Censored]";
   //Filter features
   if(!message.content.startsWith(prefix) || !message.isMentioned(client.user)){
-    let censor = "[Censored]";
-    let edit = message.content;
+    var edit = message.content;
     for (var i=0; i<= blacklist.length; i++) {
       if (message.content.toLowerCase().includes(blacklist[i])) {
         edit = edit.replace(new RegExp(blacklist[i], 'gi'), censor)
