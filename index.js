@@ -14,7 +14,7 @@ for(const file of commandFiles){
 }
 
 client.on('ready', () => {
-  client.user.setActivity('GitHub.com', {type: "WATCHING"})
+  client.user.setActivity('GitHub.com | v help', {type: "WATCHING"})
 })
 
 fs.readdir('./events/', (err, files) => {
