@@ -51,9 +51,7 @@ client.on('message', message => {
       args = message.content.slice(22).split(/ +/)
       command = args.shift().toLowerCase()
   }
-
   if(!client.commands.has(command)) return;
-
   try{
     client.commands.get(command).execute(message, args)
   } catch (error){
@@ -61,7 +59,6 @@ client.on('message', message => {
     message.reply('there was an error while trying to execute that command.')
   }
 })
-
 
 client.login(process.env.BOT_TOKEN)
 require('http').createServer().listen()
