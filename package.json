@@ -1,0 +1,37 @@
+{
+  "name": "my-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": "v11.9.0",
+    "npm": "6.5.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AkimotoRyou/ViRe-Bot"
+  },
+  "keywords": [
+    "heroku",
+    "discord.js"
+  ],
+  "author": "Asterisk*#6944",
+  "license": "ISC",
+  "dependencies": {
+    "bufferutil": "^3.0.5",
+    "discord.js": "^11.4.2",
+    "dotenv": "^6.2.0",
+    "erlpack": "github:discordapp/erlpack",
+    "libsodium-wrappers": "^0.7.4",
+    "node-opus": "^0.2.7",
+    "opusscript": "0.0.6",
+    "uws": "^9.148.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
