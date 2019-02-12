@@ -6,7 +6,6 @@ module.exports = {
 
     var helpEmbed = new Discord.RichEmbed()
       .setColor(embedColor)
-      .setAuthor(message.author.username, message.author.avatar.URL)
       .setTitle('Commands list')
       .setDescription("**Prefix : v[space]**\n\n" +
       "**Help : **show this information.\n"+
