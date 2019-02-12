@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 module.exports = {
   name : 'warn',
+  guildOnly : true,
   execute(message, args){
     var embedColor = '#ff0000'
     const member = message.mentions.members.first()
@@ -18,7 +19,7 @@ module.exports = {
       .setTitle('Missing Arguments!')
       .setDescription('Usage : `warn [@User] [Reason]`')
       .setTimestamp();
-    if(!message.member.hasPermission('MANNAGE_MESSAGES')) return message.channel.send(missingPermissionEmbed);
+    if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.channel.send(missingPermissionEmbed);
     let mentioned = message.mentions.users.first();
     if(!mentioned) return message.channel.send(missingArgsEmbed);
     let reason = args.slice(1).join(' ')
@@ -36,6 +37,5 @@ module.exports = {
       .setColor(embedColor)
       .setTitle(`${member.user.tag} has been warned.`);
     message.channel.send(warnSuccessfulEmbed);
-    message.delete();
   },
 }
