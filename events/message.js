@@ -17,7 +17,7 @@ module.exports = (client, message) => {
   var args,command
   var censor = "[Censored]";
 //Filter features
-  if(!message.content.startsWith(prefix) || !message.isMentioned(client.user)){
+  if(!message.content.startsWith(prefix[0]) || !message.content.startsWith(prefix[1]) || !message.isMentioned(client.user)){
     var edit = message.content;
     for (var i=0; i<= blacklist.length; i++) {
       if (message.content.toLowerCase().includes(blacklist[i])) {
@@ -30,7 +30,7 @@ module.exports = (client, message) => {
     }
   }
 //Commands Handler
-  if(message.content.startsWith(prefix)){
+  if(message.content.startsWith(prefix[0]) || message.content.startsWith(prefix[1])){
       args = message.content.slice(prefix.length).split(/ +/)
       command = args.shift().toLowerCase()
   } else if (message.isMentioned(client.user)){
