@@ -1,6 +1,4 @@
 # ViRe-Bot
-Prefix : v[space] or @mention[space]
+Prefix : v[space] or V[space] or @mention[space]
 
-Command list : help, info, kick, ban, prune
-
-Note : To add commands, add .js file at commands folder no need to change other files.
+Command list : help, guild, warn, kick, ban, prune

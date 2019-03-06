@@ -1,7 +1,7 @@
 {
-  "name": "vire-bot",
+  "name": "vire-bot_beta",
   "version": "1.0.0",
-  "description": "",
+  "description": "Prefix : v[space] or @mention[space]",
   "main": "index.js",
   "engines": {
     "node": "v11.9.0",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AkimotoRyou/ViRe-Bot"
+    "url": "git+https://github.com/AkimotoRyou/ViRe-Bot.git"
   },
   "keywords": [
     "heroku",
@@ -23,12 +23,21 @@
   "license": "ISC",
   "dependencies": {
     "bufferutil": "^3.0.5",
+    "config": "^3.0.1",
+    "discord-anti-spam": "^2.0.0",
+    "discord.io": "github:Woor/discord.io#gateway_v6",
     "discord.js": "^11.4.2",
     "dotenv": "^6.2.0",
     "erlpack": "github:discordapp/erlpack",
+    "https": "^1.0.0",
+    "twitch-api-v5": "^2.0.4",
     "uws": "^9.148.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.9"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/AkimotoRyou/ViRe-Bot/issues"
+  },
+  "homepage": "https://github.com/AkimotoRyou/ViRe-Bot#readme"
 }
