@@ -12,8 +12,8 @@ var success = '#ff0000'
 var error = '#ff0000'
 
 client.on('ready', () => {
-  //client.user.setActivity('GitHub.com | v help', {type: "WATCHING"})
-  client.user.setActivity('Test Version', {type: "PLAYING"})
+  client.user.setActivity('GitHub.com | v help', {type: "WATCHING"})
+  //client.user.setActivity('Test Version', {type: "PLAYING"})
   console.log(`Logged in as ${client.user.tag}!`)
 })
 
