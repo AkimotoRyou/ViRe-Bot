@@ -3,7 +3,7 @@ require('dotenv').config()
 const fs = require('fs')
 const Discord = require('discord.js')
 const client = new Discord.Client()
-const {prefix, blacklist} = require('./config.json')
+const {prefix, blacklist, selfrole} = require('./config.json')
 
 console.log('Loading Embed Colors')
 var information = '#add8e6'
@@ -12,8 +12,8 @@ var success = '#ff0000'
 var error = '#ff0000'
 
 client.on('ready', () => {
-  client.user.setActivity('GitHub.com | v help', {type: "WATCHING"})
-  //client.user.setActivity('Test Version', {type: "PLAYING"})
+  //client.user.setActivity('GitHub.com | v help', {type: "WATCHING"})
+  client.user.setActivity('Test Version', {type: "PLAYING"})
   console.log(`Logged in as ${client.user.tag}!`)
 })
 
@@ -57,6 +57,8 @@ client.on('message', (message) => {
                 .setDescription("**Prefix : v[space]**\n\n" +
                 "**Help : **show this information.\n"+
                 "**Guild : **giving clan information.\n"+
+                "**Selfrole : **get selfrole list.\n"+
+                "**Getrole : **get a role from selfrole list.\n"+
                 "**Warn : **warn a member.\n"+
                 "**Kick : **kick a member.\n"+
                 "**Ban : **ban a member.\n"+
@@ -221,13 +223,69 @@ client.on('message', (message) => {
 
                 var errorEmbed = new Discord.RichEmbed()
                   .setColor(error)
-                  .setTitle('An Error Occured!')
+                  .setTitle('An error occured!')
                   .setDescription('There was an error when trying to prune messages.')
                   .setTimestamp();
                 message.channel.bulkDelete(amount).catch(err => {
                     console.console.error(err);
                     message.channel.send(errorEmbed)
                 });
+          } else if(command === 'selfrole'){
+              var roles = ""
+              for (var i = 0; i < selfrole.length; i++) {
+                roles = roles + selfrole[i] + "\n";
+              }
+              var embed = new Discord.RichEmbed()
+                .setColor(information)
+                .setTitle('Selfrole list')
+                .setDescription(roles)
+                .setTimestamp();
+              message.channel.send(embed)
+          } else if(command === 'getrole') {
+              var warningEmbed = new Discord.RichEmbed()
+                .setColor(warning)
+                .setTitle('Role not found')
+                .setDescription(`Roles either not in the server or not added as selfrole. Use 'v selfrole' to get a list of available roles.`)
+                .setTimestamp();
+              var i
+              for (i = 0; i <= selfrole.length;) {
+                if(i === selfrole.length){
+                  break;
+                } else if(args.toLowerCase() === selfrole[i].toLowerCase()){
+                  break;
+                } else {
+                  i++;
+                }
+              }
+              var role = message.guild.roles.find(role => role.name === selfrole[i]);
+              if (!role) {
+                message.channel.send(warningEmbed)
+              } else {
+                if (message.member.roles.has(role.id)) {
+                  var embed = new Discord.RichEmbed()
+                    .setColor(success)
+                    .setTitle('Role Removed')
+                    .setDescription(`User already have a ${role} role.\n\n Removing ${role} role from ${message.author.username}.`)
+                    .setTimestamp();
+                  message.member.removeRole(role.id).catch(console.error)
+                  message.channel.send(embed)
+                } else {
+                  var embed = new Discord.RichEmbed()
+                    .setColor(success)
+                    .setTitle('Role added!')
+                    .setDescription(`Add ${message.author.username} a ${role} role.`)
+                    .setTimestamp();
+                  message.member.addRole(role.id).catch(console.error)
+                  message.channel.send(embed)
+                }
+              }
+          }else {
+              var embed = new Discord.RichEmbed()
+                .setColor(warning)
+                .setTitle('Command not found!')
+                .setDescription(`There's no ` + command + ` command. Use 'v help' to get list of command.`)
+                .setTimestamp()
+              message.channel.send(embed)
           }
         } catch (error){
           console.error(error)
