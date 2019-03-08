@@ -35,8 +35,8 @@ function getDMEmbed(color, title, field1, field2){
 }
 
 client.on('ready', () => {
-  client.user.setActivity('GitHub.com | v help', {type: "WATCHING"})
-  //client.user.setActivity('Test Version', {type: "PLAYING"})
+  //client.user.setActivity('GitHub.com | v help', {type: "WATCHING"})
+  client.user.setActivity('Test Version', {type: "PLAYING"})
   console.log(`Logged in as ${client.user.tag}!`)
 })
 
@@ -69,8 +69,7 @@ client.on('message', (message) => {
     console.log(`Message by ${message.author.username} has been filtered`)
   } else {
     //Commands Handler
-    message.channel.send(tempPrefix)
-      if(tempPrefix === prefix || tempPrefix.id === client.userID){
+      if(tempPrefix === prefix || tempPrefix === "<@541413292900352005>"){
         command = message.content.toLowerCase().split(" ", 2).slice(1).join("")
         args = message.content.split(" ").slice(2).join(" ")
         try{
