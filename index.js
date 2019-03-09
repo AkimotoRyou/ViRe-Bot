@@ -7,7 +7,8 @@ const client = new Discord.Client()
 const {prefix, blacklist, selfrole} = require('./config.json')
 const YouTube = require('simple-youtube-api')
 const ytdl = require('ytdl-core')
-const youtube = new YouTube(process.env.YOUTUBE_API)
+const YOUTUBE_API = process.env.YOUTUBE_API
+const youtube = new YouTube(YOUTUBE_API)
 const queue = new Map()
 
 console.log('Loading Embed Colors')
