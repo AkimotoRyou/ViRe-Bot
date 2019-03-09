@@ -398,10 +398,5 @@ ${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
 
 })
 
-client.on( 'disconnect', function( errMessage, code ) { // disconnect handling, reconnects unless shut down by restart
-	writeLog( 'Disconnected from Discord! Code: ' + code + ', Reason: ' + errMessage, 'Error' )
-	setTimeout(bot.connect, 15000) // waits 15 seconds before attempting to reconnect
-} );
-
 client.login(process.env.BOT_TOKEN)
 require('http').createServer().listen()
