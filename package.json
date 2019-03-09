@@ -1,5 +1,5 @@
 {
-  "name": "vire-bot_beta",
+  "name": "vire-bot",
   "version": "1.0.0",
   "description": "Prefix : v[space] or @mention[space]",
   "main": "index.js",
