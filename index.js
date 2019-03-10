@@ -102,8 +102,8 @@ function play(guild, song){
 }
 
 client.on('ready', () => {
-  client.user.setActivity('GitHub.com | v help', {type: "WATCHING"})
-  //client.user.setActivity('Test Version', {type: "PLAYING"})
+  //client.user.setActivity('GitHub.com | v help', {type: "WATCHING"})
+  client.user.setActivity('Test Version', {type: "PLAYING"})
   console.log(`Logged in as ${client.user.tag}!`)
 })
 
@@ -301,12 +301,12 @@ client.on('message', async message => {
                 return message.channel.send(cantSpeak)
               }
 
-              if(url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)){
+              if(url.match(/^https?:\/\/(www.youtube.com|youtube.com|m.youtube.com)\/playlist(.*)$/)){
                 const playlist = await youtube.getPlaylist(url)
                 const videos = await playlist.getVideos()
                 for(const video of Object.values(videos)){
                   const video2 = await youtube.getVideoByID(video.id)
-                  await handleVideo(video2, msg, voiceChannel, true)
+                  await handleVideo(video2, message, voiceChannel, true)
                 }
                 return message.channel.send(`Playlist : **${playlist.title}** has been added to the queue!`)
               } else {
@@ -317,15 +317,15 @@ client.on('message', async message => {
                     var videos = await youtube.searchVideos(searchString, 10)
                     let index = 0
                     message.channel.send(`
-__**Song selection : **__
-${videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n')}
+\`\`\`Song selection : \n
+${videos.map(video2 => `${++index}. ${video2.title}`).join('\n')}
 
 Please provide a value to select one of the search results range from 1-10.
-                    `);
+                    \`\`\``);
                     try{
                       var response = await message.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 11, {
                         maxMatches: 1,
-                        time: 10000,
+                        time: 30000,
                         errors: ['time']
                       });
                     } catch (err){
@@ -366,12 +366,12 @@ Please provide a value to select one of the search results range from 1-10.
           } else if(command === 'queue'){
               if(!serverQueue) return message.channel.send("There's nothing playing right now.")
               return message.channel.send(`
-__**Song queue: **__
+\`\`\`Song queue: \n
 
-${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
+${serverQueue.songs.map(song => `- ${song.title}`).join('\n')}
 
-**Now playing: **${serverQueue.songs[0].title}
-              `);
+Now playing: ${serverQueue.songs[0].title}
+              \`\`\``);
           } else if(command === 'pause'){
               if(serverQueue && serverQueue.playing){
                 serverQueue.playing = false;
