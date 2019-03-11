@@ -141,7 +141,8 @@ client.on('message', async message => {
       if(tempPrefix === prefix || tempPrefix === "<@541413292900352005>"){
         bot_channel[0] = message.guild.channels.find(channel => channel.id === bot_channel[0])
         bot_channel[1] = message.guild.channels.find(channel => channel.id === bot_channel[1])
-        if(message.channel.id !== bot_channel[0].id && message.channel.id !== bot_channel[1].id){
+        bot_channel[2] = message.guild.channels.find(channel => channel.id === bot_channel[2])
+        if(message.channel.id !== bot_channel[0].id && message.channel.id !== bot_channel[1].id && message.channel.id !== bot_channel[2].id){
             var embed = getEmbed(warning, "Channel disabled.", `Commands usage has been disabled in this channel.\n\nUse command in ${bot_channel[0]} or ${bot_channel[1]} instead.`)
             message.channel.send(embed)
         } else {
