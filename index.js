@@ -142,7 +142,7 @@ client.on('message', async message => {
         bot_channel[0] = message.guild.channels.find(channel => channel.id === bot_channel[0])
         bot_channel[1] = message.guild.channels.find(channel => channel.id === bot_channel[1])
         bot_channel[2] = message.guild.channels.find(channel => channel.id === bot_channel[2])
-        if(message.channel.id !== bot_channel[0].id && message.channel.id !== bot_channel[1].id && message.channel.id !== bot_channel[2].id){
+        if(message.channel.id !== bot_channel[0].id && message.channel.id !== bot_channel[1].id && !bot_channel[2]){
             var embed = getEmbed(warning, "Channel disabled.", `Commands usage has been disabled in this channel.\n\nUse command in ${bot_channel[0]} or ${bot_channel[1]} instead.`)
             message.channel.send(embed)
         } else {
