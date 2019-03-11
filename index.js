@@ -103,7 +103,7 @@ function play(guild, song){
 
 client.on('ready', () => {
   client.user.setActivity('GitHub.com | v help', {type: "WATCHING"})
-  //client.user.setActivity('Test Version', {type: "PLAYING"})
+  //client.user.setActivity('Local Network', {type: "PLAYING"})
   console.log(`Logged in as ${client.user.tag}!`)
 })
 
@@ -118,8 +118,8 @@ client.on('guildMemberAdd', (member) => {
 
 client.on('message', async message => {
   if(message.author.bot) return;
-  client.emit('checkMessage', message);
   var args, command, searchString, url, djrole
+  djrole = message.guild.roles.find(role => role.name === "DJ")
   var censor = "[Censored]";
   tempPrefix = message.content.split(" ", 1).join(" ").toLowerCase();
   const serverQueue = queue.get(message.guild.id)
@@ -139,14 +139,10 @@ client.on('message', async message => {
   } else {
     //Commands Handler
       if(tempPrefix === prefix || tempPrefix === "<@541413292900352005>"){
-        bot_channel[0] = message.guild.channels.find(channel => channel.id === bot_channel[0])
-        bot_channel[1] = message.guild.channels.find(channel => channel.id === bot_channel[1])
-        bot_channel[2] = message.guild.channels.find(channel => channel.id === bot_channel[2])
-        if(message.channel.id !== bot_channel[0].id && message.channel.id !== bot_channel[1].id && !bot_channel[2]){
+        if(message.channel.id !== bot_channel[0] && message.channel.id !== bot_channel[1] && message.guild.name === "Victorious Return"){
             var embed = getEmbed(warning, "Channel disabled.", `Commands usage has been disabled in this channel.\n\nUse command in ${bot_channel[0]} or ${bot_channel[1]} instead.`)
             message.channel.send(embed)
         } else {
-            djrole = message.guild.roles.find(role => role.name === "DJ")
             var noDJ = getEmbed(warning, "DJ role not found", `${message.guild.name} doesn't have \`DJ\` role. Create one to use this command.`)
             var notDJ = getEmbed(warning, "Insufficient permission", `You need ${djrole} role to use this command.`)
 
