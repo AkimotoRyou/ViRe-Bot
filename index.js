@@ -153,7 +153,10 @@ client.on('message', async message => {
             url = tempArgs[0] ? tempArgs[0].replace(/<(.+)>/g, '$1') : '';
 
             try{
-              if(command === 'help'){
+              if(command === "ping") {
+									const m = await message.channel.send("Ping?");
+									m.edit(`\`Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms\``);
+							} else if(command === 'help'){
                   //Help Command
                     var embed = getEmbed(information, 'Commands list', "**Prefix : v[space]**\n\n" +
                     "**Help     : **Show this information.\n"+
