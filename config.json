@@ -1,6 +1,14 @@
 {
-  "prefix" : "v",
-  "blacklist" : ["shit", "sh1t", "sh!t", "sht", "fuck", "fck", "cok", "c0k", "cuk", "bitch", "b1tch", "b!tch", "btch", "kontol", "k0ntol", "kont0l", "k0nt0l", "kntl"],
-  "selfrole" : ["BlackSquad", "Girl", "Boy", "IDN", "EN", "SG", "JPN", "KOR", "TH", "PH", "Weaboo"],
-  "bot_channel" : ["419726087854096395", "419742641131880449"]
+	"ownerID" : "384304943516876801",
+	"maintenance" : "0",
+	"infoColor" : "#add8e6",
+	"warningColor" : "#ffff00",
+	"errorColor" : "#ff0000",
+	"prefix" : "v.",
+	"cooldown" : "5",
+	"modLogCh" : "",
+	"entryLogCh" : "",
+	"modRoles" : [],
+	"botChannels" : [],
+	"blacklist" : ["s+h+[i1!|l]*t+", "f+[auv]*c*k+", "f+[auv]*c+k*", "j+[a4]*n+c+[o0ui1l!|]*k+", "(?!(cook))c+[o0ui1l!|]+k+", "b+[i1!|l]*t+c+h+", "k+h*[iuo01!l|]*n+t+[iuo01!l|]*l+"]
 }
